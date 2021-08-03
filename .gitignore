@@ -1,0 +1,15 @@
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+build/
+*.egg-info/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Backup files
+*~
+
+*.swp
