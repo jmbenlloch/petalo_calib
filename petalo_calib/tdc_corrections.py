@@ -54,5 +54,5 @@ def apply_tdc_correction(df, df_tdc):
     df['tfine_corrected'] = (period/np.pi)*np.arctan(1/np.tan((np.pi/(-2*df.amplitude))*(df.tfine-df.offset)))
     df.loc[df['tfine_corrected'] < 0, 'tfine_corrected'] += period
     df = df.drop(columns=['amplitude', 'offset'])
-    df['t'] = df.tcoarse - (360 - df.tfine_corrected) / 360
+    df['t'] = df.tcoarse_extended - (360 - df.tfine_corrected) / 360
     return df

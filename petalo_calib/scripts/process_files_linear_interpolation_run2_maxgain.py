@@ -49,8 +49,9 @@ def process_daq_file(filein, fileout, df_tdc, qf_qdc):
         write_corrected_df_daq(fileout, df_corrected, i, i>0)
 
 
-qdc0_fname = '/home/jmbenlloch/calibration/corrections/qdc_asic0_10772_linear_interpolation.h5'
-qdc2_fname = '/home/jmbenlloch/calibration/corrections/qdc_asic2_10746_linear_interpolation.h5'
+qdc0_fname = '/home/jmbenlloch/calibration/run2/qdc_calibration_asic0_imirror14_r11104_maxgain.h5'
+#qdc2_fname = '/home/jmbenlloch/calibration/corrections/qdc_asic2_10746_linear_interpolation.h5'
+qdc2_fname = '/home/jmbenlloch/calibration/run2/qdc_calibration_asic2_imirror14_r11100.h5'
 df_qdc     = create_qdc_interpolator_df(qdc0_fname, qdc2_fname)
 
 tfine_cal = '/home/jmbenlloch/calibration/corrections/scripts/asic0_tfine_cal.h5'
