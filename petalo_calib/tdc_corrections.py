@@ -56,3 +56,21 @@ def apply_tdc_correction(df, df_tdc):
     df = df.drop(columns=['amplitude', 'offset'])
     df['t'] = df.tcoarse_extended - (360 - df.tfine_corrected) / 360
     return df
+
+
+def apply_tdc_correction_tot(df, df_tdc, field='tfine'):
+    df = df.reset_index().merge(df_tdc[['channel_id', 'tac_id', 'amplitude', 'offset']], on=['channel_id', 'tac_id'])
+    df = df.sort_values('index').set_index('index')
+    df.index.name = None
+
+    period = 360
+    correctd_field = f'{field}_corrected'
+    df[correctd_field] = (period/np.pi)*np.arctan(1/np.tan((np.pi/(-2*df.amplitude))*(df[field]-df.offset)))
+    df.loc[df[correctd_field] < 0, correctd_field] += period
+    df = df.drop(columns=['amplitude', 'offset'])
+
+    if field == 'tfine':
+        df['t1'] = df.tcoarse_extended - (360 - df[correctd_field]) / 360
+    else:
+        df['t2'] = df.tcoarse_extended + df.intg_w - (360 - df[correctd_field]) / 360
+    return df
