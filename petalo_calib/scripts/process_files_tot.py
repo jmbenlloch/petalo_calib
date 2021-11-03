@@ -25,8 +25,6 @@ def process_daq_df_tot(df, df_tdc1_asic0, df_tdc2_asic0, df_tdc1_asic2, df_tdc2_
     df_0 = df[df.tofpet_id == 0]
     df_2 = df[df.tofpet_id == 2]
 
-    df = apply_tdc_correction(df, df_tdc)
-
     df_0 = apply_tdc_correction_tot(df_0, df_tdc1_asic0, 'tfine')
     df_0 = apply_tdc_correction_tot(df_0, df_tdc2_asic0, 'efine')
 
